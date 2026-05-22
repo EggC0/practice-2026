@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проектная деятельность — Проект «Домашняя автоматизация IoT»</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0f172a;
+            color: #f1f5f9;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 25px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        section {
+            padding: 80px 10%;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                linear-gradient(rgba(15,23,42,0.75), rgba(15,23,42,0.85)),
+                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop') center/cover;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 14px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #38bdf8;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-grid img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 18px;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #7dd3fc;
+        }
+
+        .journal-post {
+            background: #1e293b;
+            margin-bottom: 25px;
+            padding: 30px;
+            border-left: 6px solid #38bdf8;
+            border-radius: 14px;
+        }
+
+        .journal-post h3 {
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .resources ul {
+            margin-top: 20px;
+            padding-left: 25px;
+        }
+
+        .resources li {
+            margin-bottom: 14px;
+        }
+
+        .resources a {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        .resources a:hover {
+            text-decoration: underline;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            border-radius: 18px;
+        }
+
+        footer {
+            background: #020617;
+            padding: 30px;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(56,189,248,0.15);
+            color: #7dd3fc;
+            padding: 8px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            section {
+                padding: 60px 7%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Домашняя автоматизация IoT</div>
+
+        <div class="nav-links">
+            <a href="#home">Главная</a>
+            <a href="#about">О проекте</a>
+            <a href="#participants">Участники</a>
+            <a href="#journal">Журнал</a>
+            <a href="#resources">Ресурсы</a>
+            <a href="#media">Медиа</a>
+        </div>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="tag">Проектная деятельность 2026</div>
+        <h1>Домашняя автоматизация IoT</h1>
+        <p>
+            Проект посвящён разработке системы домашней автоматизации на основе технологий Интернета вещей (IoT). Система позволяет управлять освещением, безопасностью и бытовыми устройствами, а также автоматизировать повседневные задачи для повышения удобства и эффективности использования ресурсов.
+        </p>
+        <a href="#about" class="btn">Подробнее о проекте</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2>О проекте</h2>
+
+    <div class="about-grid">
+        <div>
+            Проект направлен на создание умной системы управления домом с использованием современных IoT-технологий. Основной задачей является объединение различных устройств в единую платформу для удобного контроля и автоматизации бытовых процессов.
+            <br>
+            <br>
+            В рамках проекта разрабатываются функции удалённого управления устройствами, мониторинга температуры, влажности и безопасности помещения. Также используются датчики движения, утечки воды и дыма для повышения уровня безопасности и автоматического выполнения сценариев работы.
+            <br>
+            <br>
+            Для реализации проекта применяются микроконтроллеры (esp32, esp8266), беспроводные модули связи, облачные серверы и платформы автоматизации, такие как Home Assistant и Node-RED. Система использует современные протоколы передачи данных и средства визуализации информации.
+        </div>
+
+        <div>
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop" alt="Командная работа">
+        </div>
+    </div>
+</section>
+
+<section id="participants">
+    <h2>Участники проекта</h2>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:25px; margin-top:30px;">
+        <div class="card">
+            <h3>Граничные</h3>
+            Лидер:<br>
+            Волынкин Артём Сергеевич 251-328<br><br>
+            Участники:
+            <ul>
+                <li>Альшебли Гассан 251-352</li>
+                <li>Варгас Боланьос Луис Диего 251-352</li>
+                <li>Голошумова Юлия Анатольевна 231-261</li>
+                <li>Дживону Аблам Эдем 251-352</li>
+                <li>Зотин Михаил Сергеевич 231-261</li>
+                <li>Ихбаяр Дулуу 251-352</li>
+                <li>Каландарова Азиза 251-352</li>
+                <li>Тихонов Роман Олегович 251-328</li>
+                <li>Шайахметов Чингиз Рустемович 241-251</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Туманные</h3>
+            Лидер:<br>
+            Жихарев Кирилл Вячеславович 241-251<br><br>
+            Участники:
+            <ul>
+                <li>Боваев Мингиян Валерьевич 251-333</li>
+                <li>Дашков Кирилл Сергеевич 231-261</li>
+                <li>Дерягин Дмитрий Алексеевич 241-372</li>
+                <li>Дмитриев Вячеслав Андреевич 231-261</li>
+                <li>Золотов Алексей Андреевич 231-251</li>
+                <li>Косарева Светлана Александровна 231-3211</li>
+                <li>Рудакова Инга Дмитриевна 231-3211</li>
+                <li>Сагидуллин Алмаз Ильшатович 251-231</li>
+                <li>Смирнов Михаил Олегович 251-953</li>
+                <li>Тагиев Вагиф Заурович 251-333</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Облачные</h3>
+            Лидер:<br>
+            Исаева Александра Ходжаевна 231-3211<br><br>
+            Участники:
+            <ul>
+                <li>Алабин Данила Андреевич 231-261</li>
+                <li>Алексеев Никита Эдуардович 231-261</li>
+                <li>Богданова Дарья Дмитриевна 251-361</li>
+                <li>Елескин Владислав Владимирович 231-251</li>
+                <li>Ермачков Лев Дмитриевич 251-352</li>
+                <li>Жуков Станислав Романович 251-352</li>
+                <li>Захраев Карим Гаджикурбанович 251-352</li>
+                <li>Клочкова Виктория Владимировна 251-324</li>
+                <li>Левченко Дмитрий Игоревич 241-351</li>
+                <li>Маслов Алексей Сергеевич 241-251</li>
+                <li>Махров Илья Михайлович 241-251</li>
+                <li>Муллаяров Булат Дамирович 231-324</li>
+                <li>Суворова Полина Денисовна 241-251</li>
+                <li>Хоменко Даниил Николаевич 251-352</li>
+                <li>Храмов Кирилл Антонович 251-324</li>
+                <li>Шестопал Алексей Алексеевич 251-352</li>
+                <li>Ямансарин Шамиль Рустамович 231-363</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="journal">
+    <h2>Журнал проекта</h2>
+
+    <div class="journal-post">
+        <h3>30.09.2025</h3>
+        <p>Home Assistant развернут на сервере Московского Политеха</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>25.10.2025</h3>
+        <p>Telegram-бот разработан и интегрирован с Home Assistant</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>10.11.2025</h3>
+        <p>MQTT-инфраструктура настроена и протестирована</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>25.11.2025</h3>
+        <p>Система сбора истории и статистики внедрена</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>15.12.2025</h3>
+        <p>Физический прототип на Raspberry Pi 5 собран</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>20.01.2026</h3>
+        <p>Интеграция с Grafana выполнена</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>10.02.2026</h3>
+        <p>Базовые сценарии автоматизации реализованы</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>10.02.2026</h3>
+        <p>Базовые сценарии автоматизации реализованы</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>15.03.2026</h3>
+        <p>Документация проекта завершена и проверена</p>
+    </div>
+
+    <div class="journal-post">
+        <h3>12.05.2026</h3>
+        <p>Проект завершен и сдан заказчику</p>
+    </div>
+</section>
+
+<section class="resources" id="resources">
+    <h2>Полезные ресурсы</h2>
+
+    <p>
+        Ниже представлены ссылки на материалы и сайты,
+        которые помогли в процессе разработки проекта.
+    </p>
+
+    <ul>
+        <li><a href="https://developer.mozilla.org/ru/" target="_blank">MDN Web Docs</a> — документация по HTML, CSS и JavaScript.</li>
+        <li><a href="https://www.waveshare.com/wiki/ESP32-S3-Zero" target="_blank">Waveshare Wiki</a> — описание esp32 и основы работы с ним.</li>
+        <li><a href="https://github.com/" target="_blank">GitHub</a> — платформа для хранения и совместной разработки кода.</li>
+        <li><a href="https://www.python.org/" target="_blank">Python</a> — язык программирования для серверной логики.</li>
+        <li><a href="https://www.home-assistant.io/" target="_blank">Home assistant</a> — платформа для разработки своего умного дома.</li>
+    </ul>
+</section>
+
+<section id="media">
+    <h2>Медиа материалы</h2>
+
+    <p>
+        В данном разделе представлены изображения, иллюстрации и видео,
+        связанные с тематикой проекта.
+    </p>
+
+    <div class="media-grid">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/ESP32_Espressif_ESP-WROOM-32_Dev_Board.jpg/1280px-ESP32_Espressif_ESP-WROOM-32_Dev_Board.jpg" alt="esp32" style="width:100%; border-radius:18px;">
+
+        <img src="https://files.seeedstudio.com/wiki/Home-Assistant/16.png" alt="Пример рабочей области home-assistant" style="width:100%; border-radius:18px;">
+
+        <img src="https://i.ytimg.com/vi/26SDUhX1dQk/maxresdefault.jpg" alt="Плата с реле и esp32" style="width:100%; border-radius:18px;">
+    </div>
+</section>
+
+<footer>
+    <p>
+        © 2026 Проектная деятельность — Домашняя автоматизация IoT
+    </p>
+</footer>
+
+</body>
+</html>
