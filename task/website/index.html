@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Телеграм-бот "Гороскоп"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #1e2a3a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #312e81);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        section {
+            background: white;
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            border-left: 5px solid #1e3a8a;
+            padding-left: 15px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+        .button {
+            background: #1e3a8a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #e2e8f0;
+            border-radius: 16px;
+            margin-top: 30px;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 10px; }
+            section { padding: 20px; }
+        }
+        .mermaid {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>🔮 Telegram-бот "Гороскоп на день"</h1>
+        <div class="subtitle">Проект студентов: Тихонов Роман и Волынкин Артем</div>
+        <div class="subtitle">ВУЗ: Московский Политехнический Университет | Группа: №251-328</div>
+    </div>
+</header>
+<div class="container">
+    <section>
+        <h2>📌 О проекте</h2>
+        <p>Бот позволяет получить ежедневный гороскоп для любого знака зодиака. Пользователь выбирает знак. Бот интегрирован с бесплатным API и написан на Python с использованием библиотеки pyTelegramBotAPI.</p>
+    </section>
+
+    <section>
+        <h2>⚙️ Функциональность</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>✅ Команды</h3>
+                <ul>
+                    <li><code>/start</code> — приветствие</li>
+                    <li><code>/horoscope</code> — начать выбор</li>
+                    <li><code>/help</code> — справка</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🎛️ Кнопки</h3>
+                <p>Inline-клавиатуры для выбора знака. Никакого ручного ввода.</p>
+            </div>
+            <div class="card">
+                <h3>📡 API</h3>
+                <p>Horoscope App API — возвращает текстовое предсказание и дату.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>📊 Архитектура (диаграмма последовательности)</h2>
+        <div class="mermaid">
+            sequenceDiagram
+                User->>Bot: /horoscope
+                Bot->>User: Показать кнопки знаков
+                User->>Bot: Выбор знака
+                Bot->>User: Показать кнопки дней
+                User->>Bot: Выбор дня
+                Bot->>API: GET запрос
+                API-->>Bot: JSON
+                Bot->>User: Гороскоп
+        </div>
+    </section>
+
+    <section>
+        <h2>🖼️ Демонстрация работы</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Скриншот 1: Старт</h3>
+                <img src="1.png" alt="скриншот" style="width:100%; border-radius:8px;">
+                <p>Команда /horoscope и появление кнопок знаков.</p>
+            </div>
+            <div class="card">
+                <h3>Скриншот 2: Выбор зз</h3>
+                <img src="2.png" alt="скриншот" style="width:100%; border-radius:8px;">
+                <p>Кнопки выбора знака задиака.</p>
+            </div>
+            <div class="card">
+                <h3>Скриншот 3: Результат</h3>
+                <img src="3.png" alt="скриншот" style="width:100%; border-radius:8px;">
+                <p>Полученный гороскоп с текстом и датой.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>📁 Репозиторий GitHub</h2>
+        <p>Все исходные коды, документация и руководства находятся в репозитории:</p>
+        <a href="https://github.com/EggC0/practice-2026/blob/master/README.md" class="button">Ссылка на GitHub</a>
+    </section>
+
+</div>
+<footer>
+    <p>© 2026, Тихонов Роман, Волынкин Артем. Проект по дисциплине "Проектная Практика".</p>
+</footer>
+</body>
+</html>
